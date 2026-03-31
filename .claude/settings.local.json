@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk:*)",
+      "Bash(node:*)",
+      "Bash(npx vite:*)",
+      "Bash(npx esbuild:*)",
+      "Bash(node -e \":*)"
+    ]
+  }
+}
