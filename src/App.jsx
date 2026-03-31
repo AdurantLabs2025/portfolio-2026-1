@@ -33,8 +33,12 @@ function ResponsiveAttentionZone() {
 }
 
 function HCIVideo() {
-  const vidRef = useRef(null);
-  useEffect(() => { vidRef.current?.play().catch(() => {}); }, []);
+  const vidRef = useCallback((v) => {
+    if (!v) return;
+    v.defaultMuted = true;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
   return (
     <div style={{
       width: "100%", height: "100%", background: "#e2e5ed",
@@ -57,7 +61,7 @@ function HCIVideo() {
           playsInline
           webkit-playsinline=""
           onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(1)" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
         />
       </div>
     </div>
@@ -65,8 +69,12 @@ function HCIVideo() {
 }
 
 function HCIVideoMobile() {
-  const vidRef = useRef(null);
-  useEffect(() => { vidRef.current?.play().catch(() => {}); }, []);
+  const vidRef = useCallback((v) => {
+    if (!v) return;
+    v.defaultMuted = true;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
   return (
     <video
       ref={vidRef}
@@ -77,7 +85,7 @@ function HCIVideoMobile() {
       playsInline
       webkit-playsinline=""
       onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
-      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(1)" }}
+      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
     />
   );
 }
