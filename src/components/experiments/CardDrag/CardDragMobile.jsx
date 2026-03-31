@@ -445,7 +445,7 @@ function CardDragExperimentMobile() {
               const showGuide = expand1 && v2.dragging && v2.prox > 0.15;
               return <div style={{
                 position: "absolute",
-                top: 76,
+                top: 62,
                 left: 0,
                 width: 340,
                 height: 76,
@@ -471,7 +471,7 @@ function CardDragExperimentMobile() {
               const showGuide = expand2 && v1.dragging && v1.prox > 0.15;
               return <div style={{
                 position: "absolute",
-                top: 76,
+                top: 62,
                 left: 0,
                 width: 340,
                 height: 76,

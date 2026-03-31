@@ -52,7 +52,8 @@ function HCIVideo() {
           loop
           muted
           playsInline
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(1)" }}
         />
       </div>
     </div>
@@ -67,7 +68,8 @@ function HCIVideoMobile() {
       loop
       muted
       playsInline
-      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+      onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
+      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(1)" }}
     />
   );
 }
