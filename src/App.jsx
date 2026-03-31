@@ -33,12 +33,14 @@ function ResponsiveAttentionZone() {
 }
 
 function HCIVideo() {
-  const vidRef = useCallback((v) => {
+  const vidRef = useRef(null);
+  useEffect(() => {
+    const v = vidRef.current;
     if (!v) return;
     v.defaultMuted = true;
     v.muted = true;
     v.play().catch(() => {});
-  }, []);
+  });
   return (
     <div style={{
       width: "100%", height: "100%", background: "#e2e5ed",
@@ -69,12 +71,14 @@ function HCIVideo() {
 }
 
 function HCIVideoMobile() {
-  const vidRef = useCallback((v) => {
+  const vidRef = useRef(null);
+  useEffect(() => {
+    const v = vidRef.current;
     if (!v) return;
     v.defaultMuted = true;
     v.muted = true;
     v.play().catch(() => {});
-  }, []);
+  });
   return (
     <video
       ref={vidRef}
