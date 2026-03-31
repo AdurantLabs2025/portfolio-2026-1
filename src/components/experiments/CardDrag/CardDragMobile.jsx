@@ -409,7 +409,7 @@ function CardDragExperimentMobile() {
   return (
     <div style={{ width:"100%",height:"100%",background:"#e2e5ed",display:"flex",alignItems:"center",justifyContent:"center",overflow:"hidden",fontFamily:"'Inter',-apple-system,sans-serif",userSelect:"none",position:"relative" }}>
       <div style={{ position:"absolute",bottom:24,left:"50%",transform:"translateX(-50%)",color:"#9aa0b4",fontSize:11,whiteSpace:"nowrap",opacity:anyActive||anyDocked?0:1,transition:"opacity 0.5s ease",pointerEvents:"none" }}>
-        Drag a card onto the other ↕
+        Drag a card onto the other
       </div>
 
       <button onClick={()=>{

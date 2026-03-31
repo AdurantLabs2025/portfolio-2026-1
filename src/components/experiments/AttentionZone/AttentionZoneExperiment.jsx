@@ -374,9 +374,9 @@ const TRIGGER_DELAY = V2_TRIGGER_DELAY;
 
       {/* Hint */}
       <div style={{
-        position: "absolute", bottom: 44, left: "50%",
+        position: "absolute", bottom: 120, left: "50%",
         transform: "translateX(-50%)",
-        color: "#9aa0b4", fontSize: 13, whiteSpace: "nowrap",
+        color: "#9aa0b4", fontSize: 16, whiteSpace: "nowrap",
         opacity: (anyRevealed || anyDocked) ? 0 : 1,
         transition: "opacity 0.5s ease", pointerEvents: "none",
       }}>

@@ -106,8 +106,8 @@ function CardDragV2ExperimentMobile() {
   const onPointerMove = useCallback((e) => {
     const s = p.current;
     if (!s.dragging) return;
-    s.x = s.ox + (e.clientX - s.px0);
-    s.y = s.oy + (e.clientY - s.py0);
+    s.x = s.ox + (e.clientX - s.px0) / M2_SCALE;
+    s.y = s.oy + (e.clientY - s.py0) / M2_SCALE;
     if (outerRef.current) {
       const deg = Math.max(-8, Math.min(8, s.x * 0.012));
       outerRef.current.style.transform = `translate(${s.x}px, calc(${M2_CARD_Y_REST}px + ${s.y}px)) rotate(${deg}deg)`;

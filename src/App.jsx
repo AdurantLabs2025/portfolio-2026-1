@@ -76,7 +76,8 @@ const EXPERIMENTS = [
   {
     id: 1,
     title: "Artifact Creation",
-    body: "Merge single items into contextual artifacts guided by intelligence and preferences.",
+    body: <>Merge single items into contextual artifacts<br/>guided by intelligence and preferences.</>,
+    mobileBody: <>Merge single items into contextual artifacts guided<br/>by intelligence and preferences.</>,
     component: CardDragExperiment,
     mobileComponent: CardDragExperimentMobile,
     mobileSize: { w: "100%", h: "100%", scale: 1, frameH: 528, interactive: true, native: true },
@@ -100,6 +101,7 @@ const EXPERIMENTS = [
     id: 4,
     title: "HCI Research",
     body: "Every direction is examined to reveal pitfalls and novel ideas to achieve a human touch and feeling.",
+    mobileBody: <>Every direction is examined to reveal pitfalls and novel<br/>ideas to achieve a human touch and feeling.</>,
     component: HCIVideo,
     mobileComponent: HCIVideoMobile,
     mobileSize: { w: "100%", h: "100%", scale: 1, frameH: 528, interactive: false, native: true },
@@ -161,16 +163,15 @@ export default function App() {
 
         <div style={{ padding: "32px 16px 48px", maxWidth: 480, margin: "0 auto" }}>
           {/* Header */}
-          <div style={{ marginBottom: 56, paddingTop: 32 }}>
-            <div style={{ fontSize: 24, fontWeight: 400, color: "#111", letterSpacing: "-0.02em", lineHeight: 1.3 }}>HCI Designer</div>
-            <div style={{ fontSize: 14, lineHeight: 1.6, color: "#777", marginTop: 14 }}>Designing since 16'. Founder of <a href="https://0-1-0.ai" target="_blank" rel="noopener noreferrer" style={{ color: "#111", textDecoration: "none" }}>0-1-0</a>.</div>
+          <div style={{ marginBottom: 80, padding: "50vh 16px 0 16px" }}>
+            <div style={{ fontSize: 32, fontWeight: 400, color: "#111", letterSpacing: "-0.02em", lineHeight: 1.3 }}>HCI Designer</div>
+            <div style={{ fontSize: 17, lineHeight: 1.6, color: "#777", marginTop: 14 }}>Designing since 16'. Founder of <a href="https://0-1-0.ai" target="_blank" rel="noopener noreferrer" style={{ color: "#111", textDecoration: "none" }}>0-1-0</a>.</div>
             <div style={{ width: "100%", height: 1, background: "#e0e0e0", marginTop: 24, marginBottom: 24 }} />
-            <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777" }}>Researching the bridge between intelligence, emotions and human interaction.</div>
-            <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777", marginTop: 8 }}>Follow me on <a href="#" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
+            <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777" }}>Researching the bridge between intelligence,<br/>emotions and human interaction.</div>
+            <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777", marginTop: 20 }}>Follow me on <a href="#" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
           </div>
 
-          {/* Experiments feed — preview on top, title + body below */}
-          <div style={{ fontSize: 13, lineHeight: 1.6, color: "#777", marginBottom: 20 }}>Experiments</div>
+          {/* Experiments feed */}
           <div style={{ display: "flex", flexDirection: "column", gap: 80 }}>
             {EXPERIMENTS.map((exp) => {
               const Comp = exp.mobileComponent || exp.component;
@@ -226,8 +227,8 @@ export default function App() {
                   <div style={{ marginTop: 24, padding: "0 16px" }}>
                     <span style={{ fontSize: 18, fontWeight: 400, color: "#111", letterSpacing: "-0.01em" }}>{exp.title}</span>
                   </div>
-                  {exp.body && (
-                    <div style={{ fontSize: 13, lineHeight: 1.6, color: "#777", marginTop: 10, padding: "0 16px" }}>{exp.body}</div>
+                  {(exp.mobileBody || exp.body) && (
+                    <div style={{ fontSize: 13, lineHeight: 1.6, color: "#777", marginTop: 10, padding: "0 16px" }}>{exp.mobileBody || exp.body}</div>
                   )}
                 </div>
               );
