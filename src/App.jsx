@@ -223,9 +223,8 @@ export default function App() {
                   </div>
 
                   {/* Title + body below preview */}
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 24, padding: "0 16px" }}>
+                  <div style={{ marginTop: 24, padding: "0 16px" }}>
                     <span style={{ fontSize: 18, fontWeight: 400, color: "#111", letterSpacing: "-0.01em" }}>{exp.title}</span>
-                    <div style={{ width: 14, height: 14, flexShrink: 0, marginTop: -2 }}><OrbSvg className={undefined} /></div>
                   </div>
                   {exp.body && (
                     <div style={{ fontSize: 13, lineHeight: 1.6, color: "#777", marginTop: 10, padding: "0 16px" }}>{exp.body}</div>
