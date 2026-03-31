@@ -33,6 +33,8 @@ function ResponsiveAttentionZone() {
 }
 
 function HCIVideo() {
+  const vidRef = useRef(null);
+  useEffect(() => { vidRef.current?.play().catch(() => {}); }, []);
   return (
     <div style={{
       width: "100%", height: "100%", background: "#e2e5ed",
@@ -47,11 +49,13 @@ function HCIVideo() {
         boxShadow: "0 30px 100px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04)",
       }}>
         <video
+          ref={vidRef}
           src="/HCI.mp4"
           autoPlay
           loop
           muted
           playsInline
+          webkit-playsinline=""
           onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(1)" }}
         />
@@ -61,13 +65,17 @@ function HCIVideo() {
 }
 
 function HCIVideoMobile() {
+  const vidRef = useRef(null);
+  useEffect(() => { vidRef.current?.play().catch(() => {}); }, []);
   return (
     <video
+      ref={vidRef}
       src="/HCI.mp4"
       autoPlay
       loop
       muted
       playsInline
+      webkit-playsinline=""
       onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
       style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(1)" }}
     />
