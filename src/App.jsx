@@ -187,7 +187,7 @@ export default function App() {
           {/* Header */}
           <div style={{ marginBottom: 80, padding: "50vh 16px 0 16px" }}>
             <div style={{ fontSize: 32, fontWeight: 400, color: "#111", letterSpacing: "-0.02em", lineHeight: 1.3 }}>HCI Designer</div>
-            <div style={{ fontSize: 17, lineHeight: 1.6, color: "#777", marginTop: 14 }}>Designing since 16'. Founder of <a href="https://0-1-0.ai" target="_blank" rel="noopener noreferrer" style={{ color: "#111", textDecoration: "none" }}>0-1-0</a>.</div>
+            <div style={{ fontSize: 17, lineHeight: 1.6, color: "#777", marginTop: 14 }}>Designing since 16'.</div>
             <div style={{ width: "100%", height: 1, background: "#e0e0e0", marginTop: 24, marginBottom: 24 }} />
             <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777" }}>Researching the bridge between intelligence,<br/>emotions and human interaction.</div>
             <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777", marginTop: 20 }}>Follow me on <a href="#" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
@@ -427,7 +427,7 @@ export default function App() {
         <div className="sidebar">
           <div style={{ paddingTop: 48, paddingRight: 16, flexShrink: 0 }}>
             <div style={{ fontSize: 28, fontWeight: 400, color: "#111", letterSpacing: "-0.02em", lineHeight: 1.3 }}>HCI Designer</div>
-            <div style={{ fontSize: 16, lineHeight: 1.6, color: "#777", marginTop: 12 }}>Designing since 16'. Founder of <a href="https://0-1-0.ai" target="_blank" rel="noopener noreferrer" style={{ color: "#111", textDecoration: "none" }}>0-1-0</a>.</div>
+            <div style={{ fontSize: 16, lineHeight: 1.6, color: "#777", marginTop: 12 }}>Designing since 16'.</div>
             <div style={{ width: "100%", height: 1, background: "#e0e0e0", marginTop: 16, marginBottom: 16 }} />
             <div style={{ fontSize: 14, lineHeight: 1.6, color: "#777" }}>Researching the bridge between intelligence,<br/>emotions and human interaction.</div>
             <div style={{ fontSize: 14, lineHeight: 1.6, color: "#777", marginTop: 4 }}>Follow me on <a href="#" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
