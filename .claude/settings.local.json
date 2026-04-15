@@ -6,7 +6,11 @@
       "Bash(npx vite:*)",
       "Bash(npx esbuild:*)",
       "Bash(node -e \":*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(ls:*)",
+      "Bash(cp \"/Users/adurant/Desktop/Portfolio Videos/Artifact Creation.mp4\" /Users/adurant/Desktop/Portfolio-NEW/public/ArtifactCreation.mp4)",
+      "Bash(cp \"/Users/adurant/Desktop/Portfolio Videos/Attention-Zone.mp4\" /Users/adurant/Desktop/Portfolio-NEW/public/AttentionZone.mp4)",
+      "Bash(cp \"/Users/adurant/Desktop/Portfolio Videos/Dynamic.mp4\" /Users/adurant/Desktop/Portfolio-NEW/public/Dynamic.mp4)"
     ]
   }
 }

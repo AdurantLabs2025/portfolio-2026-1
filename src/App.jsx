@@ -6,6 +6,32 @@ import CardDragV2Experiment from "./components/experiments/AttentionZone/Attenti
 import CardDragV2ExperimentMobile from "./components/experiments/AttentionZone/AttentionZoneMobile";
 import DynamicUIExperiment from "./components/experiments/DynamicUI/DynamicUIExperiment";
 
+function ResponsiveDynamicUI() {
+  const ref = useRef(null);
+  const [scale, setScale] = useState(1);
+  useEffect(() => {
+    if (!ref.current) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const w = entry.contentRect.width;
+      setScale(w < 900 ? Math.max(0.55, w / 900) : 1);
+    });
+    ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, []);
+  return (
+    <div ref={ref} style={{ width: "100%", height: "100%", overflow: "hidden" }}>
+      <div style={{
+        width: scale < 1 ? `${100 / scale}%` : "100%",
+        height: scale < 1 ? `${100 / scale}%` : "100%",
+        transform: scale < 1 ? `scale(${scale})` : "none",
+        transformOrigin: "top left",
+      }}>
+        <DynamicUIExperiment />
+      </div>
+    </div>
+  );
+}
+
 function ResponsiveAttentionZone() {
   const ref = useRef(null);
   const [scale, setScale] = useState(1);
@@ -26,71 +52,120 @@ function ResponsiveAttentionZone() {
         transform: scale < 1 ? `scale(${scale})` : "none",
         transformOrigin: "top left",
       }}>
-        <CardDragV2Experiment />
+        <CardDragV2Experiment containerScale={scale} />
       </div>
     </div>
   );
 }
 
 function HCIVideo() {
-  const vidRef = useRef(null);
+  const vidRefs = [useRef(null), useRef(null), useRef(null)];
+  const [hovered, setHovered] = useState(-1);
   useEffect(() => {
-    const v = vidRef.current;
-    if (!v) return;
-    v.defaultMuted = true;
-    v.muted = true;
-    v.play().catch(() => {});
+    vidRefs.forEach((ref) => {
+      const v = ref.current;
+      if (!v) return;
+      v.defaultMuted = true;
+      v.muted = true;
+      v.play().catch(() => {});
+    });
   });
+  const sources = ["/AttentionZone.mp4", "/ArtifactCreation.mp4", "/Dynamic.mp4"];
+  const positions = [
+    { zIndex: 1, rotate: "-12deg", x: "-75%", y: "-35%" },
+    { zIndex: 3, rotate: "-2deg", x: "-5%", y: "2%" },
+    { zIndex: 2, rotate: "8deg", x: "65%", y: "28%" },
+  ];
   return (
     <div style={{
       width: "100%", height: "100%", background: "#e2e5ed",
+      overflow: "hidden", position: "relative",
       display: "flex", alignItems: "center", justifyContent: "center",
-      overflow: "hidden",
     }}>
-      <div style={{
-        width: "min(546px, calc(100% - 64px))",
-        aspectRatio: "1 / 1",
-        borderRadius: 16,
-        overflow: "hidden",
-        boxShadow: "0 30px 100px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.04)",
-      }}>
-        <video
-          ref={vidRef}
-          src="/HCI.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          webkit-playsinline=""
-          onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
-        />
-      </div>
+      {sources.map((src, i) => (
+        <div
+          key={i}
+          onMouseEnter={() => setHovered(i)}
+          onMouseLeave={() => setHovered(-1)}
+          style={{
+            position: "absolute",
+            width: "min(280px, 42%)",
+            aspectRatio: "1 / 1.25",
+            borderRadius: 12,
+            overflow: "hidden",
+            border: "0.5px solid white",
+            boxShadow: "0 60px 180px rgba(0,0,0,0.04), 0 24px 90px rgba(0,0,0,0.02)",
+            zIndex: positions[i].zIndex,
+            transform: `translate(${positions[i].x}, ${positions[i].y}) rotate(${positions[i].rotate}) scale(${hovered === i ? 1.03 : 1})`,
+            transition: "transform 0.3s ease, z-index 0.3s ease",
+            cursor: "default",
+          }}>
+          <video
+            ref={vidRefs[i]}
+            src={src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline=""
+            onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
+          />
+        </div>
+      ))}
     </div>
   );
 }
 
 function HCIVideoMobile() {
-  const vidRef = useRef(null);
+  const vidRefs = [useRef(null), useRef(null), useRef(null)];
   useEffect(() => {
-    const v = vidRef.current;
-    if (!v) return;
-    v.defaultMuted = true;
-    v.muted = true;
-    v.play().catch(() => {});
+    vidRefs.forEach((ref) => {
+      const v = ref.current;
+      if (!v) return;
+      v.defaultMuted = true;
+      v.muted = true;
+      v.play().catch(() => {});
+    });
   });
+  const sources = ["/AttentionZone.mp4", "/ArtifactCreation.mp4", "/Dynamic.mp4"];
+  const positions = [
+    { zIndex: 1, rotate: "-10deg", x: "-40%", y: "-60%" },
+    { zIndex: 3, rotate: "0deg", x: "0%", y: "0%" },
+    { zIndex: 2, rotate: "10deg", x: "38%", y: "58%" },
+  ];
   return (
-    <video
-      ref={vidRef}
-      src="/HCI.mp4"
-      autoPlay
-      loop
-      muted
-      playsInline
-      webkit-playsinline=""
-      onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
-      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
-    />
+    <div style={{
+      width: "100%", height: "100%", position: "relative",
+      overflow: "hidden", background: "#e2e5ed",
+      display: "flex", alignItems: "center", justifyContent: "center",
+    }}>
+      {sources.map((src, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          width: "44%",
+          aspectRatio: "1 / 1.25",
+          borderRadius: 10,
+          overflow: "hidden",
+          border: "0.5px solid white",
+          boxShadow: "0 60px 180px rgba(0,0,0,0.04), 0 24px 90px rgba(0,0,0,0.02)",
+          zIndex: positions[i].zIndex,
+          transform: `translate(${positions[i].x}, ${positions[i].y}) rotate(${positions[i].rotate})`,
+        }}>
+          <video
+            ref={vidRefs[i]}
+            src={src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline=""
+            onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
+          />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -116,7 +191,7 @@ const EXPERIMENTS = [
     id: 3,
     title: "Dynamic UI",
     body: "Fluid interfaces that mold themselves to context and action items. Organic and without constraints.",
-    component: DynamicUIExperiment,
+    component: ResponsiveDynamicUI,
     mobileSize: { w: 800, h: 1050, scale: 0.54, frameH: 528, interactive: true },
   },
   {
@@ -190,7 +265,7 @@ export default function App() {
             <div style={{ fontSize: 17, lineHeight: 1.6, color: "#777", marginTop: 14 }}>Designing since 16'.</div>
             <div style={{ width: "100%", height: 1, background: "#e0e0e0", marginTop: 24, marginBottom: 24 }} />
             <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777" }}>Researching the bridge between intelligence,<br/>emotions and human interaction.</div>
-            <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777", marginTop: 20 }}>Follow me on <a href="#" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
+            <div style={{ fontSize: 13, lineHeight: 1.7, color: "#777", marginTop: 20 }}>Follow me on <a href="https://x.com/luke_orb" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:lukas.kmoth@gmail.com" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
           </div>
 
           {/* Experiments feed */}
@@ -430,7 +505,7 @@ export default function App() {
             <div style={{ fontSize: 16, lineHeight: 1.6, color: "#777", marginTop: 12 }}>Designing since 16'.</div>
             <div style={{ width: "100%", height: 1, background: "#e0e0e0", marginTop: 16, marginBottom: 16 }} />
             <div style={{ fontSize: 14, lineHeight: 1.6, color: "#777" }}>Researching the bridge between intelligence,<br/>emotions and human interaction.</div>
-            <div style={{ fontSize: 14, lineHeight: 1.6, color: "#777", marginTop: 4 }}>Follow me on <a href="#" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
+            <div style={{ fontSize: 14, lineHeight: 1.6, color: "#777", marginTop: 4 }}>Follow me on <a href="https://x.com/luke_orb" style={{ color: "#111", textDecoration: "none" }}>Twitter/X</a>, or send me an <a href="mailto:lukas.kmoth@gmail.com" style={{ color: "#111", textDecoration: "none" }}>Email</a>.</div>
           </div>
           <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", minHeight: 0 }}>
             {EXPERIMENTS.map((exp) => (

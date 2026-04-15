@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 
-const M2_ORBIT_RADIUS  = 40;
+const M2_ORBIT_RADIUS  = 250;
 const M2_STIFFNESS     = 0.08;
 const M2_DAMPING       = 0.78;
 const M2_TRIGGER_DELAY = 300;
@@ -32,8 +32,9 @@ function CardDragV2ExperimentMobile() {
     const card = cardRef.current.getBoundingClientRect();
     const ix = icon.left + icon.width / 2;
     const iy = icon.top + icon.height / 2;
-    const cx = Math.max(card.left, Math.min(ix, card.right));
-    const dist = Math.hypot(cx - ix, card.top - iy);
+    const cardCx = card.left + card.width / 2;
+    const cardCy = card.top + card.height / 2;
+    const dist = Math.hypot(cardCx - ix, cardCy - iy);
     return Math.max(0, 1 - dist / M2_ORBIT_RADIUS);
   }, []);
 

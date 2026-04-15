@@ -8,7 +8,7 @@ const V2_DAMPING       = 0.88;
 const V2_TRIGGER_DELAY = 300;
 
 // ── Experiment 2: Component ─────────────────────────────────────────
-function CardDragV2Experiment() {
+function CardDragV2Experiment({ containerScale = 1 }) {
 // Re-bind prefixed constants locally
 const ORBIT_RADIUS = V2_ORBIT_RADIUS;
 const STIFFNESS = V2_STIFFNESS;
@@ -179,14 +179,15 @@ const TRIGGER_DELAY = V2_TRIGGER_DELAY;
   const onPointerMove = useCallback((e) => {
     const s = p.current;
     if (!s.dragging) return;
-    s.x = s.ox + (e.clientX - s.px0);
-    s.y = s.oy + (e.clientY - s.py0);
+    const totalScale = containerScale * 0.8;
+    s.x = s.ox + (e.clientX - s.px0) / totalScale;
+    s.y = s.oy + (e.clientY - s.py0) / totalScale;
     // Apply rotation directly to DOM — no React state lag
     if (outerRef.current) {
       const deg = Math.max(-8, Math.min(8, s.x * 0.012));
       outerRef.current.style.transform = `translate(${s.x}px, calc(180px + ${s.y}px)) rotate(${deg}deg)`;
     }
-  }, []);
+  }, [containerScale]);
 
   const onPointerUp = useCallback(() => {
     const s = p.current;
@@ -289,13 +290,14 @@ const TRIGGER_DELAY = V2_TRIGGER_DELAY;
   const onPointerMove2 = useCallback((e) => {
     const s = p2.current;
     if (!s.dragging) return;
-    s.x = s.ox + (e.clientX - s.px0);
-    s.y = s.oy + (e.clientY - s.py0);
+    const totalScale = containerScale * 0.8;
+    s.x = s.ox + (e.clientX - s.px0) / totalScale;
+    s.y = s.oy + (e.clientY - s.py0) / totalScale;
     if (outerRef2.current) {
       const deg = Math.max(-8, Math.min(8, s.x * 0.012));
       outerRef2.current.style.transform = `translate(${s.x}px, calc(180px + ${s.y}px)) rotate(${deg}deg)`;
     }
-  }, []);
+  }, [containerScale]);
 
   const onPointerUp2 = useCallback(() => {
     const s = p2.current;
