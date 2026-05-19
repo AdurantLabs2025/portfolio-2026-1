@@ -59,112 +59,79 @@ function ResponsiveAttentionZone() {
 }
 
 function HCIVideo() {
-  const vidRefs = [useRef(null), useRef(null), useRef(null)];
-  const [hovered, setHovered] = useState(-1);
+  const vidRef = useRef(null);
   useEffect(() => {
-    vidRefs.forEach((ref) => {
-      const v = ref.current;
-      if (!v) return;
-      v.defaultMuted = true;
-      v.muted = true;
-      v.play().catch(() => {});
-    });
+    const v = vidRef.current;
+    if (!v) return;
+    v.defaultMuted = true;
+    v.muted = true;
+    v.play().catch(() => {});
   });
-  const sources = ["/AttentionZone.mp4", "/ArtifactCreation.mp4", "/Dynamic.mp4"];
-  const positions = [
-    { zIndex: 1, rotate: "-12deg", x: "-75%", y: "-35%" },
-    { zIndex: 3, rotate: "-2deg", x: "-5%", y: "2%" },
-    { zIndex: 2, rotate: "8deg", x: "65%", y: "28%" },
-  ];
   return (
     <div style={{
       width: "100%", height: "100%", background: "#e2e5ed",
       overflow: "hidden", position: "relative",
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
-      {sources.map((src, i) => (
-        <div
-          key={i}
-          onMouseEnter={() => setHovered(i)}
-          onMouseLeave={() => setHovered(-1)}
-          style={{
-            position: "absolute",
-            width: "min(280px, 42%)",
-            aspectRatio: "1 / 1.25",
-            borderRadius: 12,
-            overflow: "hidden",
-            border: "0.5px solid white",
-            boxShadow: "0 60px 180px rgba(0,0,0,0.04), 0 24px 90px rgba(0,0,0,0.02)",
-            zIndex: positions[i].zIndex,
-            transform: `translate(${positions[i].x}, ${positions[i].y}) rotate(${positions[i].rotate}) scale(${hovered === i ? 1.03 : 1})`,
-            transition: "transform 0.3s ease, z-index 0.3s ease",
-            cursor: "default",
-          }}>
-          <video
-            ref={vidRefs[i]}
-            src={src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            webkit-playsinline=""
-            onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
-          />
-        </div>
-      ))}
+      <div style={{
+        width: "min(750px, 85%)",
+        aspectRatio: "1 / 1",
+        borderRadius: 12,
+        overflow: "hidden",
+        border: "0.5px solid white",
+        boxShadow: "0 60px 180px rgba(0,0,0,0.04), 0 24px 90px rgba(0,0,0,0.02)",
+      }}>
+        <video
+          ref={vidRef}
+          src="/SpatialUI.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline=""
+          onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+      </div>
     </div>
   );
 }
 
 function HCIVideoMobile() {
-  const vidRefs = [useRef(null), useRef(null), useRef(null)];
+  const vidRef = useRef(null);
   useEffect(() => {
-    vidRefs.forEach((ref) => {
-      const v = ref.current;
-      if (!v) return;
-      v.defaultMuted = true;
-      v.muted = true;
-      v.play().catch(() => {});
-    });
+    const v = vidRef.current;
+    if (!v) return;
+    v.defaultMuted = true;
+    v.muted = true;
+    v.play().catch(() => {});
   });
-  const sources = ["/AttentionZone.mp4", "/ArtifactCreation.mp4", "/Dynamic.mp4"];
-  const positions = [
-    { zIndex: 1, rotate: "-10deg", x: "-40%", y: "-60%" },
-    { zIndex: 3, rotate: "0deg", x: "0%", y: "0%" },
-    { zIndex: 2, rotate: "10deg", x: "38%", y: "58%" },
-  ];
   return (
     <div style={{
       width: "100%", height: "100%", position: "relative",
       overflow: "hidden", background: "#e2e5ed",
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
-      {sources.map((src, i) => (
-        <div key={i} style={{
-          position: "absolute",
-          width: "44%",
-          aspectRatio: "1 / 1.25",
-          borderRadius: 10,
-          overflow: "hidden",
-          border: "0.5px solid white",
-          boxShadow: "0 60px 180px rgba(0,0,0,0.04), 0 24px 90px rgba(0,0,0,0.02)",
-          zIndex: positions[i].zIndex,
-          transform: `translate(${positions[i].x}, ${positions[i].y}) rotate(${positions[i].rotate})`,
-        }}>
-          <video
-            ref={vidRefs[i]}
-            src={src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            webkit-playsinline=""
-            onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "saturate(0.75)" }}
-          />
-        </div>
-      ))}
+      <div style={{
+        width: "85%",
+        aspectRatio: "1 / 1",
+        borderRadius: 10,
+        overflow: "hidden",
+        border: "0.5px solid white",
+        boxShadow: "0 60px 180px rgba(0,0,0,0.04), 0 24px 90px rgba(0,0,0,0.02)",
+      }}>
+        <video
+          ref={vidRef}
+          src="/SpatialUI.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline=""
+          onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+      </div>
     </div>
   );
 }
@@ -196,9 +163,9 @@ const EXPERIMENTS = [
   },
   {
     id: 4,
-    title: "HCI Research",
-    body: "Every direction is examined to reveal pitfalls and novel ideas to achieve a human touch and feeling.",
-    mobileBody: <>Every direction is examined to reveal pitfalls and novel<br/>ideas to achieve a human touch and feeling.</>,
+    title: "Spatial Interfaces",
+    body: "xxxxxxx",
+    mobileBody: <>xxxxxxx</>,
     component: HCIVideo,
     mobileComponent: HCIVideoMobile,
     mobileSize: { w: "100%", h: "100%", scale: 1, frameH: 528, interactive: false, native: true },
