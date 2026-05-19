@@ -164,8 +164,8 @@ const EXPERIMENTS = [
   {
     id: 4,
     title: "Spatial Interfaces",
-    body: "xxxxxxx",
-    mobileBody: <>xxxxxxx</>,
+    body: "3D gestural interface to browse through artifacts",
+    mobileBody: <>3D gestural interface to browse through artifacts</>,
     component: HCIVideo,
     mobileComponent: HCIVideoMobile,
     mobileSize: { w: "100%", h: "100%", scale: 1, frameH: 528, interactive: false, native: true },
