@@ -88,6 +88,7 @@ function HCIVideo() {
           loop
           muted
           playsInline
+          preload="auto"
           webkit-playsinline=""
           onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
@@ -127,6 +128,7 @@ function HCIVideoMobile() {
           loop
           muted
           playsInline
+          preload="auto"
           webkit-playsinline=""
           onEnded={(e) => { e.target.currentTime = 0; e.target.play(); }}
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
